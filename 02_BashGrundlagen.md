@@ -1,0 +1,1 @@
+# 02 - Bash Grundlagen
