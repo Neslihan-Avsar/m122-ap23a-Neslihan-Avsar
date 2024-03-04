@@ -116,8 +116,12 @@ Hier ist ein Beispiel eines for-loops:
 for datei in *.txt
 do
   echo $datei
-  [-r £datei] && echo " ist lesbar"
-  [-w $datei] && echo " ist schreibar"
+  if [-r £datei]; then
+    echo " ist lesbar"
+  fi
+  if [-w $datei]; then
+    echo " ist schreibar"
+  fi
 done
 ```
 
