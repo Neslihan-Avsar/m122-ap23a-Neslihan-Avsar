@@ -3,8 +3,8 @@
 | Tag | Thema | Notizen und Resultate |
 | --- | --- | --- |
 | 1 | Linux Einführung | MD-01 geschrieben, WSL-Setup durchgeführt |
-| 2 | Bash Grundlagen | MD-02 und MD-03 geschrieben |
-| 3 | Bash Grundlagen | MD-03 erweitert, MD-04 geschrieben |
+| 2 | Bash Grundlagen + Aufgaben | MD-02 und MD-03 geschrieben |
+| 3 | Bash Grundlagen + Aufgaben | MD-03 erweitert, MD-04 geschrieben |
 | 4 | Bash Aufgaben | |
 | 5 | Bash Aufgaben + LB1 | |
 | 6 | LB2: Start | |
