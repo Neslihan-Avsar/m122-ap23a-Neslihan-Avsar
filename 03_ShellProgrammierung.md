@@ -175,3 +175,118 @@ $ sort < sortThis.txt
 3
 ```
 
+### Arrays
+
+Declarierung von Arrays:
+
+```
+my_array=(apfel banane "Frucht Korb" orange)
+```
+
+Arrays benutzen:
+
+```
+# ZUR ABFRAGE VON DER LÄNGE
+$ ${#my_array[@}
+
+4
+
+# DAS ZWEITE ELEMENT AUSWÄHLEN
+$ ${#my_array[2]}
+
+banane
+
+# DAS ZWEITLETZTE AUSWÄHLEN RELATIV ZUM LETZTEN, WENN DIE LÄNGE UNBEKANNT IST
+$ ${#my_array[${#my_array[@]}-1]}
+
+Frucht Korb¨
+
+# DEN BEREICH EINS BIS DREI IN EINEM ARRAY AUFRUFEN
+$ ${#my_array[@]:1:3}
+
+apfel
+banane
+Frucht Korb
+```
+
+Es gibt nicht nur Arrays mit Zahlen als Zähler, sondern auch welche mit Zeichenketten:
+
+```
+$ declare -a my_num_array
+$ my_num_array[0]=1
+$ my_num_array[1]=2
+
+$ declare -A my_string_array
+$ my_string_array[first_month]=january
+$ my_string_array[second_month]=febuary
+```
+
+Um Einträge zwischen zwei Einträgen in einem Array zu erstellen, muss man folgendes tun:
+
+```
+# HIER FEHLT MAR AM PLATZ 2
+$ my_months=(jan feb apr mai jun jul aug sep oct nov dez)
+$ my_months=("${my_months[@]:0:2}" "mar" "${my_months[@]:2})
+$ echo my_months[@]
+
+jan
+feb
+mar
+apr
+mai
+jun
+jul
+aug
+sep
+oct
+nov
+dez
+```
+
+Um Einträge von einem Array zu entfernen muss man folgendes tun:
+
+```
+$ unset my_months[2]
+$ echo my_months[@]
+
+
+jan
+feb
+apr
+mai
+jun
+jul
+aug
+sep
+oct
+nov
+dez
+```
+
+Um zwei Arrays miteinander zu verbinden:
+
+```
+$ my_poke_array1=(normal fire water electric grass ice fighting poison ground)
+$ my_poke_array2=(flying psychic bug rock ghost dragon dark steel fairy)
+$ my_complete_poke_array(${my_poke_array1[@]} ${my_poke_array2[@]})
+$ echo my_complete_poke_array
+
+normal
+fire
+water
+electric
+grass
+ice
+fighting
+poison
+ground
+flying
+psychic
+bug
+rock
+ghost
+dragon
+dark
+steel
+fairy
+```
