@@ -76,6 +76,15 @@ Mit `sort` wird etwas sortiert und nur einen Eintrag für jedes Wort verwendet m
 
 ### e) Formulieren sie eine for-schleife, welche durch die Zahlen 1 bis 10 läuft und das Produkt der Zahlen mit sich selbst ausgibt.
 
+```
+n=1
+
+for i in $(seq 1 10);
+    do
+        echo [[$i * $n]]
+    done
+```
+
 ---
 
 ### f) Wie oft laufen folgende cronjobs?
@@ -86,6 +95,10 @@ Mit `sort` wird etwas sortiert und nur einen Eintrag für jedes Wort verwendet m
      0 10 1 * * <befehl3>
 ```
 
+1. alle 10 Minuten
+2. alle 5 Minuten und 8 Stunden
+3. alle 10 Stunden und ein Tag
+
 ---
 
 ### g) Was macht folgender Befehl? (Zum Testen IP-Adresse anpassen und fping installieren!)
@@ -93,6 +106,11 @@ Mit `sort` wird etwas sortiert und nur einen Eintrag für jedes Wort verwendet m
 ```
      fping -g -c 1 -t250 172.16.6.0/24 2>&1 | grep " 0% " | cut -d " " -f 1 
 ```
+
+Mit `fping` kann man ein Gerät mit einer bestimmten Adresse kontaktieren, um die Verbindung zu testen.
+Mit dem `|` Symbol wird gleich noch einen Ablauf direkt danach angehängt, bevor die Resultate auf dem System Output präsentiert werden.
+Mit `grep` kann man Zeichenketten suchen und filtern (in dem Fall ist es `" 0% "`).
+Und mit `cut` werden Charakter nach dem Delimiter `" "` (mittels dem Flag `-d`) "geschnitten" bzw. getrennt.
 
 ---
 
@@ -109,6 +127,11 @@ Mit `sort` wird etwas sortiert und nur einen Eintrag für jedes Wort verwendet m
 	done
 ```
 
+Der folgenden Skript hat einen for-loop für jeden Eintrag, welches mit `ifconfig` gefunden wurde.
+Mit `grep` wird nach den Resultaten `inet` und `127.0.0.1` gefischt.
+Mit `cut` wird es nach dem Delimiter `"."` geschnitten.
+Innerhalb des Loops gibt es noch eine Schlaufe, welches 255-mal durchläuft und je nach dem Resultat der vorherigen Schalufe etwas pingt und dies in einem Textfile (namens `ips.txt`) schreibt bzw anhängt.
+
 ---
 
 ### i) Was macht folgender Befehl?
@@ -116,6 +139,10 @@ Mit `sort` wird etwas sortiert und nur einen Eintrag für jedes Wort verwendet m
 ```
      find / -user otto -iname "*bash*" -exec cp {} /data/otto/ \;
 ```
+
+Mit `find` wird in dem Directory "`/`" (also `root`) nach einem user namens "`otto`" gesucht.
+Der Flag `-iname` wird verwendet, damit es case-insensitive ist. (Gross- und Kleinschreibung wird nicht beachtet)
+Mit dem `-exec` Flag wird ein Command ausgeführt.
 
 ---
 
@@ -125,3 +152,7 @@ Mit `sort` wird etwas sortiert und nur einen Eintrag für jedes Wort verwendet m
       for ip in $(seq 200 254);do echo 192.168.13.$ip; done > ips.txt
       for ip in $(cat ips.txt);do dig -x $ip | grep $ip >> dns.txt; done
 ```
+
+1. For-loop für die IP-Adressen 192.168.13.200 bis 192.168.13.254. Diese werden dann in die Datei `ips.txt` geschrieben bzw überschrieben.
+2. For-loop für den Inhalt der Datei `ips.txt`. Mit dem `dig` Command wird ein DNS Loopup durchgeführt mit den Adressen.
+   Dies wird zum File `dns.txt` geschrieben bzw angehängt. 
