@@ -12,3 +12,5 @@
 | 8 | LB2: Code | |
 | 9 | LB2: Abgabe | |
 | 10 | LB2: Abgabe | |
+
+![05_Zusammenfassung](05_Zusammenfassung.png)
